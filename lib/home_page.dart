@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               labelText: 'Email',
                             ),
                             validator: (value) => validationMail(value),
-                            onSaved: (value) => email = value,
+                            onSaved: (value) => email = value.trim(),
                             inputFormatters: [
                               LowerCaseTextFormatter(),
                             ]),

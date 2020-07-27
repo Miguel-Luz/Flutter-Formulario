@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:cnpj_cpf_helper/cnpj_cpf_helper.dart';
 
  validationName(String value){
-  value.trim();
+  value = value.trim();
   if(value.length == 0){
    return 'Este campo é obrigatório'; 
   }
@@ -12,8 +12,8 @@ import 'package:cnpj_cpf_helper/cnpj_cpf_helper.dart';
 }
 
 validationMail(String value){
-  value.toLowerCase();
-  value.trim();
+  value = value.trim();
+  print(value.length);
   if(value.length == 0){
    return 'Este campo é obrigatório'; 
   }
@@ -32,7 +32,7 @@ validationCpf(String value){
 }
 
 validationCep(String value){
-  value.trim();
+  value = value.trim();
   if(value.length == 0){
    return 'Este campo é obrigatório'; 
   }

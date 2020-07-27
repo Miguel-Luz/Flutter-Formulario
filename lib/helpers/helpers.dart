@@ -2,8 +2,8 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:crypto/crypto.dart';
-import 'package:cadastro_usuario/Entities/Adress.dart';
-import 'package:cadastro_usuario/Entities/Usuario.dart';
+import 'package:formulario/Entities/Adress.dart';
+import 'package:formulario/Entities/Usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
