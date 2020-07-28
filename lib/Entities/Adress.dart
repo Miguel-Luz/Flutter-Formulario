@@ -32,9 +32,15 @@ Adress.fromMap(Map<String,dynamic> map){
    cidade = map['localidade'] ?? null;
    uf = map['uf'] ?? null;
    pais = map['pais'] ?? null ;
-   error = map['erro'] ?? false ;
+   error = map['erro'] ?? null ;
   }  
+
+ Adress.error(bool status){
+    error = status;
+ }
+
 }
+
 
 
 

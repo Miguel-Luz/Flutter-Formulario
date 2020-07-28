@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               labelText: 'Email',
                             ),
                             validator: (value) => validationMail(value),
-                            onSaved: (value) => email = value.trim(),
+                            onSaved: (value) => email = value,
                             inputFormatters: [
                               LowerCaseTextFormatter(),
                             ]),
@@ -153,23 +153,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.grey[300],
                           onPressed: () async {
                             var result = validationCep(cepController.text);
-                            if (result != null) {
+                            if(result != null) {
                               messageSnackBar(_scaffold, result);
                               return;
                             }
 
-                            Adress _cep =
-                                await getAdressByCep(cepController.text);
-
-                            if (_cep.error) {
-                              messageSnackBar(_scaffold, 'Cep não localizado');
+                            var pr =  showProgressDialog(context);
+                            pr.show();
+                            Adress _cep = await getAdressByCep(cepController.text);
+                            pr.hide();
+                            if (_cep.error ?? false) {
+                                messageSnackBar(_scaffold, 'Cep não localizado');
                               return;
-                            }
-
-                            localidadeController.text =
-                                _cep.cidade ?? localidadeController.text;
-                            bairroController.text =
-                                _cep.bairro ?? bairroController.text;
+                            }                
+                            localidadeController.text = _cep.cidade ?? localidadeController.text;
+                            bairroController.text = _cep.bairro ?? bairroController.text;
                             ruaController.text = _cep.rua ?? ruaController.text;
                             ufController.text = _cep.uf ?? ufController.text;
                           },

@@ -34,7 +34,7 @@ validationCpf(String value){
 validationCep(String value){
   value = value.trim();
   if(value.length == 0){
-   return 'Este campo é obrigatório'; 
+   return 'Cep vázio - preencha o campo'; 
   }
   if((value.length != 8) || (int.tryParse(value) == null)) {
    return 'O cep está em um formato inválido'; 
@@ -99,9 +99,5 @@ validationCountry(String value){
   if(value.toUpperCase() != 'BRASIL'){
    return 'Só aceitamos cadastros do Brasil'; 
   }
-}
-
-
-
- 
+} 
 

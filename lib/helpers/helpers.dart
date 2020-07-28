@@ -1,3 +1,4 @@
+
 import 'dart:math';
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -6,6 +7,7 @@ import 'package:formulario/Entities/Adress.dart';
 import 'package:formulario/Entities/Usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 String getAvatar(String value) {
  if(value == null){
@@ -14,7 +16,7 @@ String getAvatar(String value) {
    return 'https://www.gravatar.com/avatar/$hash?d=robohash';
  }else{
      var hash = md5.convert(utf8.encode(value.toLowerCase()));
-     return 'https://www.gravatar.com/avatar/$hash';
+     return 'https://www.gravatar.com/avatar/$hash?d=robohash';
  }
 }
 
@@ -27,8 +29,10 @@ Future<Adress> getAdressByCep(String value) async{
     print('***Não foi possível chegar ao servidor.');
   }catch (e){
     print('***Houve um problema no processamento.'); 
+  }finally{
+
   }
-  
+  return Adress.error(true);
 }
 
 void showUser(BuildContext parentContext,Usuario user){
@@ -129,3 +133,23 @@ class LowerCaseTextFormatter extends TextInputFormatter {
     );
   }
 }
+
+ 
+ProgressDialog showProgressDialog(context){
+ ProgressDialog pr = new ProgressDialog(context);
+    pr.style(
+          message: 'Buscando o endereço ...',
+          borderRadius: 10.0,
+         // backgroundColor: Colors.white,
+          progressWidget: CircularProgressIndicator(),
+          elevation: 10.0,
+          insetAnimCurve: Curves.easeInOut,
+          progress: 0.0,
+          maxProgress: 100.0,
+          progressTextStyle: TextStyle(
+          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+          messageTextStyle: TextStyle(
+          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600)
+        );
+       return pr;
+      }  
